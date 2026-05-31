@@ -1,0 +1,52 @@
+<manifest xmlns:android="http://schemas.android.com/apk/android/custom"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    package="com.example.roadsos">
+
+    <!-- Permissions for emergency services and background polling -->
+    <uses-permission android1:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android1:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android1:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android1:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android1:name="android.permission.WAKE_LOCK" />
+    <uses-permission android1:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android1:name="android.permission.SEND_SMS" />
+    <uses-permission android1:name="android.permission.INTERNET" />
+
+    <application
+        android1:label="RoadSOS"
+        android1:name="${applicationName}"
+        android1:icon="@mipmap/ic_launcher">
+        
+        <activity
+            android1:name=".MainActivity"
+            android1:exported="true"
+            android1:launchMode="singleTop"
+            android1:theme="@style/LaunchTheme"
+            android1:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android1:hardwareAccelerated="true"
+            android1:windowSoftInputMode="adjustResize">
+            <meta-data
+              android1:name="io.flutter.embedding.android.NormalTheme"
+              android1:resource="@style/NormalTheme"
+              />
+            <intent-filter>
+                <action android1:name="android.intent.action.MAIN"/>
+                <category android1:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        
+        <!-- Native Sensor Foreground Service with Android 14 Special Use Tag -->
+        <service
+            android1:name=".SensorService"
+            android1:enabled="true"
+            android1:exported="false"
+            android1:foregroundServiceType="specialUse">
+            <property android1:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                     android1:value="Continuous high-frequency accelerometer and gyroscope sensor polling at 50Hz for immediate vehicular crash detection and automated SOS broadcasting." />
+        </service>
+
+        <meta-data
+            android1:name="flutterEmbedding"
+            android1:value="2" />
+    </application>
+</manifest>

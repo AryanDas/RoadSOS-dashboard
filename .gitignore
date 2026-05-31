@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.idea/
+.dart_tool/
+.flutter-plugins/
+.flutter-plugins-dependencies
+build/
+roadsos.iml
+*.pptx
+distress_incidents.jsonl
+*.log
+.system_generated/
